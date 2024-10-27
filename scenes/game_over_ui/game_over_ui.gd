@@ -9,7 +9,8 @@ func _ready() -> void:
 	SignalsManager.on_plane_died.connect(_on_plane_died)
 
 func _process(delta: float) -> void:
-	if space_label.visible and Input.is_action_just_pressed("espace"):
+	if (space_label.visible and Input.is_action_just_pressed("espace") 
+	or Input.is_action_just_pressed("touch")):
 		GameManager.load_main_scene()
 
 func _on_plane_died() -> void:

@@ -24,7 +24,11 @@ position = Vector2(70, 0)
 stream = ExtResource("3_2tjx0")
 volume_db = -6.5
 
+[node name="VelocityTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Laser" to="." method="_on_laser_body_entered"]
 [connection signal="body_entered" from="Upper" to="." method="_on_pipe_body_entered"]
 [connection signal="body_entered" from="Lower" to="." method="_on_pipe_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_screen_exited"]
+[connection signal="timeout" from="VelocityTimer" to="." method="_on_velocity_timer_timeout"]

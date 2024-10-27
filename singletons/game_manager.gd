@@ -3,9 +3,13 @@ const GAME: PackedScene = preload("res://scenes/game/game.tscn")
 const MAIN: PackedScene = preload("res://scenes/main/main.tscn")
 const SIMPLE_TRANSITION: PackedScene = preload("res://scenes/simple_transition/simple_transition.tscn")
 const COMPLEX_TRANSITION = preload("res://scenes/complex_transition/complex_transition.tscn")
-const SCROLL_SPEED: float = 100.0
+var SCROLL_SPEED: float = 100.0
 const GROUP_PLANE: String = "Plane"
 var next_scene: PackedScene
+
+func _ready():
+	SignalsManager.on_timer_velocity_timeout.connect(_on_timer_velocity_timeout)
+
 
 func load_next_scene(ns: PackedScene) -> void:
 	next_scene = ns
@@ -19,4 +23,8 @@ func load_game_scene() -> void:
 
 func load_main_scene() -> void:
 	load_next_scene(MAIN)
+	SCROLL_SPEED = 100.0
 	#get_tree().change_scene_to_packed(MAIN)
+
+func _on_timer_velocity_timeout() -> void:
+	SCROLL_SPEED += 2.0

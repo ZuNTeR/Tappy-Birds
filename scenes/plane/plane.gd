@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		die()
 
 func fly() -> void:
-	if Input.is_action_just_pressed("espace") == true:
+	if Input.is_action_just_pressed("espace") == true or Input.is_action_just_pressed("touch"):
 		velocity.y = POWER
 		anim_player.play("power")
 

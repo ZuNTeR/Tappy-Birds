@@ -6,6 +6,7 @@ extends Node2D
 const PIPES: PackedScene = preload("res://scenes/pipes/pipes.tscn")
 
 func _ready() -> void:
+	SignalsManager.on_timer_velocity_timeout.connect(_on_timer_velocity_timeout)
 	ScoreManager.set_score(0)
 	SignalsManager.on_plane_died.connect(_on_plane_died)
 	spawn_pipes()
@@ -28,3 +29,6 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_plane_died() -> void:
 	spawn_timer.stop()
+
+func _on_timer_velocity_timeout() -> void:
+	spawn_timer.wait_time = clamp(spawn_timer.wait_time - 0.02, 0.5, spawn_timer.wait_time)
