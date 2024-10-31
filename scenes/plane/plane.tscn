@@ -96,3 +96,8 @@ libraries = {
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3iuc1")
 autoplay = true
+
+[node name="VelocityTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="VelocityTimer" to="." method="_on_velocity_timer_timeout"]

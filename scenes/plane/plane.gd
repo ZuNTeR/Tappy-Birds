@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 		die()
 
 func fly() -> void:
-	if Input.is_action_just_pressed("espace") == true or Input.is_action_just_pressed("touch"):
+	if Input.is_action_just_pressed("espace") == true or Input.is_action_just_pressed("touch") == true:
 		velocity.y = POWER
 		anim_player.play("power")
 
@@ -23,3 +23,7 @@ func die() -> void:
 	anim_sprite.stop()
 	SignalsManager.on_plane_died.emit()
 	sound.stop()
+
+
+func _on_velocity_timer_timeout() -> void:
+	SignalsManager.on_timer_velocity_timeout.emit()

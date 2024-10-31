@@ -4,6 +4,7 @@ const OFF_SCREEN: float = -500.0
 @onready var score_sound: AudioStreamPlayer2D = $ScoreSound
 @onready var von: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
+
 func _ready() -> void:
 	SignalsManager.on_plane_died.connect(_on_plane_died)
 
@@ -34,7 +35,3 @@ func _on_laser_body_entered(body: Node2D) -> void:
 	#if body is Tappy:
 		#score_sound.play()
 	ScoreManager.increment_score()
-
-
-func _on_velocity_timer_timeout() -> void:
-	SignalsManager.on_timer_velocity_timeout.emit()
