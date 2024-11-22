@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7v2y8t45ydic"]
+[gd_scene load_steps=18 format=3 uid="uid://c7v2y8t45ydic"]
 
 [ext_resource type="Script" path="res://scenes/plane/plane.gd" id="1_1sdfh"]
 [ext_resource type="Texture2D" uid="uid://dvh708d82cnhp" path="res://assets/plane/planes_sheet.png" id="1_vsre8"]
@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3a5sm"]
-radius = 23.0
+radius = 31.0
 
 [sub_resource type="Animation" id="Animation_vhphg"]
 length = 0.001
@@ -49,6 +49,65 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lin0j"]
+resource_name = "down_animation"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_jy1y1"]
+resource_name = "invencible"
+length = 0.7
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_1c4k3"]
@@ -68,10 +127,69 @@ tracks/0/keys = {
 "values": [0.0, -0.349066, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_huhnv"]
+resource_name = "up"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.349066]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c2fev"]
 _data = {
 "RESET": SubResource("Animation_vhphg"),
-"power": SubResource("Animation_1c4k3")
+"down_animation": SubResource("Animation_lin0j"),
+"invencible": SubResource("Animation_jy1y1"),
+"power": SubResource("Animation_1c4k3"),
+"up": SubResource("Animation_huhnv")
+}
+
+[sub_resource type="Animation" id="Animation_asbda"]
+resource_name = "avanco"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_ubqtd"]
+resource_name = "invencible"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qfup"]
+_data = {
+"avanco": SubResource("Animation_asbda"),
+"invencible": SubResource("Animation_ubqtd")
 }
 
 [node name="Plane" type="CharacterBody2D" groups=["Plane"]]
@@ -79,13 +197,15 @@ collision_layer = 8
 script = ExtResource("1_1sdfh")
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.9, 0.9)
 sprite_frames = SubResource("SpriteFrames_mc0h1")
 animation = &"fly"
 autoplay = "fly"
 frame_progress = 0.391333
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -2)
+scale = Vector2(0.990915, 1.00859)
 shape = SubResource("CircleShape2D_3a5sm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -99,5 +219,10 @@ autoplay = true
 
 [node name="VelocityTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AnimationPlayerInvencible" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4qfup")
+}
 
 [connection signal="timeout" from="VelocityTimer" to="." method="_on_velocity_timer_timeout"]

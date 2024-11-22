@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfd5syfj1scto"]
+
+[ext_resource type="Script" path="res://scenes/avanco/avanco.gd" id="1_plcac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bww3j"]
+
+[node name="Avanco" type="Area2D"]
+scale = Vector2(1.95455, 1.99209)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_plcac")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -13.7869
+offset_right = 20.0
+offset_bottom = 6.21314
+rotation = 0.785398
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_bww3j")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(24.5581, 0.501984)
+scale = Vector2(0.436706, 0.436706)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw51ioovydcjh"]
+
+[ext_resource type="Texture2D" uid="uid://bs78leqqhy5oq" path="res://assets/setas/seta.png" id="1_ikpmg"]
+[ext_resource type="Script" path="res://scenes/screen_button/screen_button.gd" id="2_tklqo"]
+
+[node name="ScreenButton" type="TouchScreenButton"]
+scale = Vector2(0.0544458, 0.0544458)
+texture_normal = ExtResource("1_ikpmg")
+script = ExtResource("2_tklqo")

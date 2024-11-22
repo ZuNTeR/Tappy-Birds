@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://htpxffwfdo30"]
+
+[ext_resource type="Texture2D" uid="uid://bs78leqqhy5oq" path="res://assets/setas/seta.png" id="1_vtg4u"]
+
+[node name="Button" type="Button"]
+visible = false
+offset_left = 24.0
+offset_top = -23.9999
+offset_right = 1012.0
+offset_bottom = 482.0
+rotation = 1.5708
+scale = Vector2(0.0610755, 0.0985863)
+size_flags_horizontal = 0
+size_flags_vertical = 8
+icon = ExtResource("1_vtg4u")

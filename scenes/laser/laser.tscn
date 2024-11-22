@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/laser/laser.gd" id="1_pvftq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8svnn"]
-size = Vector2(3.5, 229)
+size = Vector2(18, 1471)
 
 [sub_resource type="Animation" id="Animation_pa6rw"]
 resource_name = "flash"
@@ -28,7 +28,7 @@ _data = {
 }
 
 [node name="Laser" type="Area2D"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_pvftq")
 
@@ -37,8 +37,9 @@ scale = Vector2(1, 8)
 texture = ExtResource("1_icann")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(58.75, 0)
+position = Vector2(66, 0)
 shape = SubResource("RectangleShape2D_8svnn")
+one_way_collision_margin = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

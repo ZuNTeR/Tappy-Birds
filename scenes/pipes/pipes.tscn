@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bties6dnojb6m" path="res://assets/audio/score.wav" id="3_2tjx0"]
 
 [node name="Pipes" type="Node2D"]
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_vay8k")
 
 [node name="Laser" parent="." instance=ExtResource("2_5vhw0")]

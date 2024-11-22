@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://by58p73vbgx1t"]
+[gd_scene load_steps=6 format=3 uid="uid://by58p73vbgx1t"]
 
 [ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_n4gbo"]
-[ext_resource type="LabelSettings" uid="uid://dgtcy36lhyqmu" path="res://assets/LG_red_24.tres" id="1_yvx3p"]
+[ext_resource type="FontFile" uid="uid://8lwlgm8v4svo" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_1x7gn"]
+[ext_resource type="PackedScene" uid="uid://bw51ioovydcjh" path="res://scenes/screen_button/screen_button.tscn" id="3_pnrpv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7joqr"]
+line_spacing = 1.0
+font = ExtResource("2_1x7gn")
+font_size = 30
+font_color = Color(0.8, 0.188235, 0.313726, 1)
+outline_size = 4
+outline_color = Color(0.662745, 0.643137, 1, 1)
+shadow_size = 7
+shadow_color = Color(0.207843, 0.207843, 0.207843, 0.47451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aed0q"]
+line_spacing = 1.0
+font = ExtResource("2_1x7gn")
+font_size = 30
+font_color = Color(0.8, 0.188235, 0.313726, 1)
+outline_size = 4
+outline_color = Color(0.662745, 0.643137, 1, 1)
+shadow_size = 7
+shadow_color = Color(0.207843, 0.207843, 0.207843, 0.47451)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -14,8 +35,8 @@ script = ExtResource("1_n4gbo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 480.0
+offset_bottom = 79.0
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
@@ -23,5 +44,49 @@ theme_override_constants/margin_bottom = 24
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "0"
-label_settings = ExtResource("1_yvx3p")
+label_settings = SubResource("LabelSettings_7joqr")
+
+[node name="TimerSwitch" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "10"
+label_settings = SubResource("LabelSettings_aed0q")
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -102.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScreenButtonUp" parent="MarginContainer3" instance=ExtResource("3_pnrpv")]
+visible = false
+position = Vector2(419, 4)
+rotation = 1.5708
+scale = Vector2(0.07808, 0.098)
+action = "up"
+
+[node name="ScreenButtonDown" parent="MarginContainer3" instance=ExtResource("3_pnrpv")]
+visible = false
+position = Vector2(48, 77)
+rotation = -1.5708
+scale = Vector2(0.0775225, 0.0977368)
+action = "down"
+
+[node name="plane_switch_pickup" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="plane_switch_pickup" to="." method="_on_plane_switch_pickup_timeout"]

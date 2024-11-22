@@ -16,7 +16,10 @@ func set_score(v: int) -> void:
 	_score = v
 	if _high_score < _score:
 		_high_score = _score
+	if _score == GameManager.score_atual:
+		SignalsManager.on_score_atual_plus.emit()
 	SignalsManager.on_score_updated.emit(_score)
+	
 
 func increment_score() -> void:
 	set_score(_score + 1)

@@ -2,6 +2,7 @@ extends Parallax2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var texture: Texture2D
+var scale_f
 
 func _ready() -> void:
 	SignalsManager.on_plane_died.connect(_on_plane_died)
